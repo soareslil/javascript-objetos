@@ -1,4 +1,5 @@
 let listaDeItens = [];
+let itemAEditar 
 
 const form = document.getElementById("form-itens");
 const itensInput = document.getElementById("receber-item");
@@ -53,6 +54,7 @@ function mostrarItens() {
             <input type="text" class="is-size-5" value="${elemento.valor}"></input>
         </div>
         <div>
+        <i class="fa-regular fa-floppy-disk is-clickable"></i><i class="fa-regular is-clickable fa-pen-to-square editar"></i>
             <i class="fa-solid fa-trash is-clickable deletar"></i>
         </div>
     </li>
@@ -76,9 +78,23 @@ function mostrarItens() {
         i.addEventListener("click", (evento) => {
             const valorDoElemento =
                 evento.target.parentElement.parentElement.getAttribute("data-value");
-                listaDeItens.splice(valorDoElemento,1);
+            listaDeItens.splice(valorDoElemento, 1);
             mostrarItens();
         });
     });
+
+    const editarItens = document.querySelectorAll(".editar");
+
+    editarItens.forEach((i) => {
+        i.addEventListener("click", (evento) => {
+            const itemAEditar =
+                evento.target.parentElement.parentElement.getAttribute("data-value");
+
+            mostrarItens();
+            console.log(itemAEditar);
+        });
+    });
+
+
 
 }
